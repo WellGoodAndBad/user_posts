@@ -1,0 +1,29 @@
+[tool.poetry]
+name = "user-blog"
+version = "0.1.0"
+description = ""
+authors = ["higashi <higashigo@mail.ru>"]
+readme = "README.md"
+packages = [{include = "user_blog"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+fastapi = "^0.89.1"
+asyncpg = "^0.27.0"
+environs = "^9.5.0"
+sqlalchemy = "^1.4.46"
+uvloop = "^0.17.0"
+uvicorn = "^0.20.0"
+orjson = "^3.8.5"
+ujson = "^5.7.0"
+alembic = "^1.9.1"
+argon2-cffi = "^21.3.0"
+python-jose = "^3.3.0"
+python-multipart = "^0.0.5"
+aioredis = "^2.0.1"
+redis = "^4.4.2"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

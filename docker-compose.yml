@@ -1,0 +1,33 @@
+version: '3.1'
+
+services:
+
+  db:
+    container_name: db
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: ${postgres}
+    volumes:
+      - ./db/db_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:alpine
+    ports:
+      - 6379:6379
+
+  user_blog_api:
+    image: api
+    env_file: .env
+    build: ./
+    command: bash -c "alembic upgrade head && uvicorn user_blog.main:app --port 8000 --host 0.0.0.0"
+    restart: always
+    volumes:
+      - .:/opt
+    ports:
+      - 8000:8000
+    depends_on:
+      - db
+      - redis
